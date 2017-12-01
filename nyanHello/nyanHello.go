@@ -1,8 +1,7 @@
-package goPlayground
+package nyanHello
 
 import "fmt"
 
-func Nyan() string {
+func Nyan() {
 	fmt.Printf("nyan\n")
-	return ""
 }

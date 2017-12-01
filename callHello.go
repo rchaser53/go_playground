@@ -3,10 +3,10 @@ package main
 import (
 	f "fmt"
 
-	. "./nyanHello"
+	nyanHello "./nyanHello"
 )
 
 func main() {
 	f.Println("nya-n")
-	Nyan()
+	nyanHello.Nyan()
 }
