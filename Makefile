@@ -11,4 +11,7 @@ build: clean
 	go build -o $(OUTPUT_PATH)
 
 run:
+	go run index.go
+
+goRun:
 	$(OUTPUT_PATH)
