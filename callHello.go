@@ -3,7 +3,7 @@ package main
 import (
 	f "fmt"
 
-	nyanHello "./nyanHello"
+	nyanHello "goPlayground/nyanHello"
 )
 
 func main() {
