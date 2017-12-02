@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+    <script>
+      fetch('http://localhost:3000/git')
+        .then((ret) => ret.json())
+        .then((ret) => {
+          console.log(ret)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    </script>
+  </head>
   <body>
     nyan
     <img src="static/images/cat.jpg" />
