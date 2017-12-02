@@ -11,6 +11,13 @@ import (
 func main() {
 	nyanHello.Nyan()
 
+	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "static/index.html")
+	})
+	http.ListenAndServe(":3000", nil)
+}
+
+func tryGet() string {
 	resp, err := http.Get("https://google.com/")
 
 	if err != nil {
@@ -18,6 +25,9 @@ func main() {
 	}
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	f.Println(string(byteArray))
+	bodyStr := string(byteArray)
+	f.Println(bodyStr)
 	defer resp.Body.Close()
+
+	return bodyStr
 }
