@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/go-chi/chi"
 )
 
 func main() {
@@ -16,7 +18,17 @@ func main() {
 	http.HandleFunc("/hoge", serveTemplate)
 	http.HandleFunc("/git", serveGitRequest)
 
-	http.ListenAndServe(":3000", nil)
+	r := chi.NewRouter()
+	r.Route("/nest/", func(r chi.Router) {
+		r.Get("/*", func(w http.ResponseWriter, r *http.Request) {
+			w.Write([]byte("welcome"))
+		})
+		r.Get("/gyan", func(w http.ResponseWriter, r *http.Request) {
+			w.Write([]byte("ma"))
+		})
+	})
+
+	http.ListenAndServe(":3000", r)
 }
 
 func serveTemplate(w http.ResponseWriter, r *http.Request) {
