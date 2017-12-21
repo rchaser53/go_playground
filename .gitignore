@@ -2,3 +2,4 @@ bin
 pkg
 build
 !.gitkeep
+.DS_Store
