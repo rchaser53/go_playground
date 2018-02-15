@@ -1,34 +1,30 @@
 package main
 
 import (
+	"fmt"
 	f "fmt"
 	"goPlayground/nyanHello"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
-
-	"github.com/go-chi/chi"
+	"regexp"
 )
 
 func main() {
-	// nyanHello.Nyan()
-	fs := http.FileServer(http.Dir("static"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
-	http.HandleFunc("/hoge", serveTemplate)
-	http.HandleFunc("/git", serveGitRequest)
+	str := `<a href=""></a>
+	<a href=""></a>
+	<a href=""></a>
+	`
+	rep := regexp.MustCompile(`(?m)href=""`)
+	str = rep.ReplaceAllString(str, "nya-n")
 
-	r := chi.NewRouter()
-	r.Route("/nest/", func(r chi.Router) {
-		r.Get("/*", func(w http.ResponseWriter, r *http.Request) {
-			w.Write([]byte("welcome"))
-		})
-		r.Get("/gyan", func(w http.ResponseWriter, r *http.Request) {
-			w.Write([]byte("ma"))
-		})
-	})
+	println(str) //
 
-	http.ListenAndServe(":3000", r)
+}
+
+func hoge() {
+	fmt.Println(123)
 }
 
 func serveTemplate(w http.ResponseWriter, r *http.Request) {
